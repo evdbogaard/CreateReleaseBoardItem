@@ -1,0 +1,78 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "51415901-93a1-478a-b4cd-ffbc1ac8a811",
+    "name": "CreateReleaseBoardItem",
+    "friendlyName": "Create release board work item",
+    "description": "Creates an item on a release board with various relationships like build pipeline, pull request, and user stories.",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Erwin van den Bogaard",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 1
+    },
+    "instanceNameFormat": "Creating work item...",
+    "inputs": [
+        {
+            "name": "teamProject",
+            "type": "string",
+            "label": "Team project",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The name of the team project"
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "label": "Title",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The title of the work item that will be created"
+        },
+        {
+            "name": "workItemType",
+            "type": "string",
+            "label": "Work item type",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The type of the work item that will be created (User Story, Bug, Issue, Task, Epic, etc.)"
+        },
+        {
+            "name": "areaPath",
+            "type": "string",
+            "label": "Area path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The area path of the new work item"
+        },
+        {
+            "name": "iterationPath",
+            "type": "string",
+            "label": "Iteration path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The iteration path of the new work item"
+        },
+        {
+            "name": "description",
+            "type": "string",
+            "label": "Description",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "The description of the work item"
+        },        {
+            "name": "additionalTags",
+            "type": "string",
+            "label": "Additional tags",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Any additional tags you want to add to the work item"
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "build/index.js"
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "manifestVersion": 1,
+    "id": "CreateReleaseBoardItem",
+    "name": "Create release board work item",
+    "version": "0.0.1",
+    "publisher": "evdbogaard",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Creates an item on a release board with various relationships like build pipeline, pull request, and user stories.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/scrumboard.png"        
+    },
+    "files": [
+        {
+            "path": "CreateReleaseBoardItem"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "CreateReleaseBoardItem"
+            }
+        }
+    ]
+}
