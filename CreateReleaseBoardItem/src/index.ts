@@ -18,7 +18,7 @@ async function run() {
         const workItemType = tl.getInputRequired('workItemType');
         const areaPath = tl.getInputRequired('areaPath');
         const iterationPath = tl.getInputRequired('iterationPath');
-        const description =tl.getInput('description') ?? '';
+        const description = tl.getInput('description') ?? '';
         const additionalTags = tl.getInput('additionalTags') ?? '';
         const customFieldMappings = tl.getDelimitedInput('customFieldMappings', '\n', false);
 
