@@ -18,6 +18,9 @@
     workItemType: 'User Story'
     title: 'Hello world'
     description: 'some description'
+    customFieldMappings: |
+      Custom.MyField=$(Build.SourceVersionMessage)
+      Custom.MySecondField=Test 1234
 ```
 
 ## Running locally
