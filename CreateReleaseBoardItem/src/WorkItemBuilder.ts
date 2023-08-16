@@ -28,7 +28,13 @@ export class WorkItemBuilder {
 
     public async createWorkItem(type: string) {
         const options = { additionalHeaders: { 'Content-Type': 'application/json-patch+json'}};
-        await Api.instance.post(UrlHelper.urlWorkItem(type), this._createObject, options);
+        const result = await Api.instance.post(UrlHelper.urlWorkItem(type), this._createObject, options);
+
+        if (result !== null)
+            console.log('Succesfully created work item')
+        else
+            console.log('Failed to create work item');
+
         this._createObject = [];
     }
 }

@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 1
+        "Patch": 2
     },
     "instanceNameFormat": "Creating work item...",
     "inputs": [
@@ -61,13 +61,22 @@
             "defaultValue": "",
             "required": false,
             "helpMarkDown": "The description of the work item"
-        },        {
+        },
+        {
             "name": "additionalTags",
             "type": "string",
             "label": "Additional tags",
             "defaultValue": "",
             "required": false,
             "helpMarkDown": "Any additional tags you want to add to the work item"
+        },
+        {
+            "name": "customFieldMappings",
+            "type": "multiLine",
+            "label": "Add data to other fields not automatically filled",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Provide each field on a new line with field=value syntax"
         }
     ],
     "execution": {
