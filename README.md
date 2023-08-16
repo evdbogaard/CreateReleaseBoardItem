@@ -22,3 +22,9 @@
 
 ## Running locally
 Use `$env:INPUT_{variableName}` to set an input variable
+
+## For personal testing
+Update in both `task.json` and `vvs-extension.json`
+GUID: 55a2ce16-f56a-4f4d-a059-80771be38bce
+Name: PREVIEWCreateReleaseBoardItem
+Friendly name: (PREVIEW) Create release board work item
