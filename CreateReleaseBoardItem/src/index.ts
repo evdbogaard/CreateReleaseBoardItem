@@ -9,7 +9,7 @@ async function run() {
         const collectionUrl = tl.getVariable('System.CollectionUri') ?? '<organization url: https://dev.azure.com/{orgName}/>';
         const accessToken = tl.getVariable('System.AccessToken') ?? '<access token>';
         const repositoryName = tl.getVariable('Build.Repository.Name') ?? "<repository name>";
-        const gitCommitId =  tl.getVariable('Build.SourceVersion') ?? "<git commit ID>";
+        const gitCommitId = tl.getVariable('Build.SourceVersion') ?? "<git commit ID>";
         const buildId = tl.getVariable('Build.BuildId') ?? '<build ID>';
 
         // input variables
@@ -18,8 +18,9 @@ async function run() {
         const workItemType = tl.getInputRequired('workItemType');
         const areaPath = tl.getInputRequired('areaPath');
         const iterationPath = tl.getInputRequired('iterationPath');
-        const description = tl.getInput('description') ?? '';
+        const description =tl.getInput('description') ?? '';
         const additionalTags = tl.getInput('additionalTags') ?? '';
+        const customFieldMappings = tl.getDelimitedInput('customFieldMappings', '\n', false);
 
         Api.instance.initialize(collectionUrl, teamProject, accessToken);
 
@@ -42,6 +43,13 @@ async function run() {
         builder.addField(WorkItemFieldHelper.iterationPath, iterationPath);
         builder.addField(WorkItemFieldHelper.descriptionField, description);
         builder.addRelation('Build', `vstfs:///Build/Build/${buildId}`, 'ArtifactLink');
+        customFieldMappings.forEach(field => {
+            const split = field.split('=');
+            if (split.length != 2)
+                return;
+
+            builder.addField(`/fields/${split[0]}`, split[1]);
+        })
 
         if (labels)
             builder.addField(WorkItemFieldHelper.tagPath, labels);
