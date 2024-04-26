@@ -32,10 +32,11 @@ async function run() {
         if (linkedPR) {
             prArtifactId = await PullRequestHelper.getArtifactId(linkedPR.id);
             labels = await PullRequestHelper.getLabels(linkedPR.repositoryUrl, linkedPR.id);
-            if (additionalTags !== '') {
-                labels = labels ? `${labels}; ${additionalTags}` : additionalTags;
-            }
             workItems = await PullRequestHelper.getWorkItems(linkedPR.repositoryUrl, linkedPR.id);
+        }
+
+        if (additionalTags !== '') {
+            labels = labels ? `${labels}; ${additionalTags}` : additionalTags;
         }
 
         const builder = new WorkItemBuilder();
