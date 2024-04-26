@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "CreateReleaseBoardItem",
     "name": "Create release board work item",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "publisher": "evdbogaard",
     "targets": [
         {
