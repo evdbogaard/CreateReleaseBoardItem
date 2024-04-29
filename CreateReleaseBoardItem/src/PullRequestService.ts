@@ -46,12 +46,12 @@ export class PullRequestHelper {
         return response.value.filter(l => l.active).map(l => l.name).join('; ');
     }
 
-    public static async getWorkItems(repositoryUrl: string, id: number): Promise<string[] | null> {
+    public static async getWorkItems(repositoryUrl: string, id: number): Promise<WorkItem[] | null> {
         const response = await Api.instance.get<PullRequestWorkItemResponse>(UrlHelper.urlPrWorkItems(repositoryUrl, id));
         if (!response || response.value.length === 0)
             return null;
 
-        const workItemUrls: string[] = [];
+        const workItems: WorkItem[] = [];
         for(let i of response.value) {
             const workItem = await Api.instance.get<WorkItem>(`${i.url}?$expand=relations`);
             if (!workItem)
@@ -60,7 +60,7 @@ export class PullRequestHelper {
             switch (workItem.fields['System.WorkItemType']) {
                 case 'User Story':
                 case 'Bug':
-                    workItemUrls.push(workItem.url);
+                    workItems.push(workItem);
                     break;
                 case 'Task':
                     const parentRelation = workItem.relations.find(r => r.rel === 'System.LinkTypes.Hierarchy-Reverse');
@@ -69,18 +69,18 @@ export class PullRequestHelper {
 
                     const parent = await Api.instance.get<WorkItem>(parentRelation.url);
                     if (parent)
-                        workItemUrls.push(parent?.url);
+                        workItems.push(parent);
                     break;
                 default:
                     continue;
             }
         }
 
-        return [...new Set(workItemUrls)];
+        return [...new Set(workItems)];
     }
 }
 
-interface WorkItem {
+export interface WorkItem {
     id: number,
     fields: WorkItemFields;
     url: string;
@@ -89,6 +89,8 @@ interface WorkItem {
 
 interface WorkItemFields {
     'System.WorkItemType': string;
+    'System.AreaPath': string;
+    'System.IterationPath': string;
 }
 
 interface WorkItemRelation {
