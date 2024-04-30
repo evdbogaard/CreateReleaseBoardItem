@@ -31,30 +31,6 @@
             "helpMarkDown": "The title of the work item that will be created"
         },
         {
-            "name": "workItemType",
-            "type": "string",
-            "label": "Work item type",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "The type of the work item that will be created (User Story, Bug, Issue, Task, Epic, etc.)"
-        },
-        {
-            "name": "areaPath",
-            "type": "string",
-            "label": "Area path",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "The area path of the new work item"
-        },
-        {
-            "name": "iterationPath",
-            "type": "string",
-            "label": "Iteration path",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "The iteration path of the new work item"
-        },
-        {
             "name": "description",
             "type": "string",
             "label": "Description",
