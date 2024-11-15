@@ -8,9 +8,9 @@
     "category": "Utility",
     "author": "Erwin van den Bogaard",
     "version": {
-        "Major": 0,
+        "Major": 1,
         "Minor": 0,
-        "Patch": 4
+        "Patch": 2
     },
     "instanceNameFormat": "Creating work item...",
     "inputs": [
@@ -56,7 +56,7 @@
         }
     ],
     "execution": {
-        "Node": {
+        "Node16": {
             "target": "build/index.js"
         }
     }
