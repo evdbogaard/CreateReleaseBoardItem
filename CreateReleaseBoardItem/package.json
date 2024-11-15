@@ -9,12 +9,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
-    "azure-pipelines-task-lib": "^4.4.0",
+    "azure-pipelines-task-lib": "^4.17.3",
     "btoa": "^1.2.1",
-    "typed-rest-client": "^1.8.11"
+    "typed-rest-client": "^2.1.0"
   },
   "devDependencies": {
-    "@types/btoa": "^1.2.3"
+    "@types/btoa": "^1.2.5"
   }
 }
