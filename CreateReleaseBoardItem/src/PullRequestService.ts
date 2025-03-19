@@ -18,7 +18,7 @@ export class PullRequestHelper {
         if (!response || response.results.length === 0)
             return null;
 
-        for(let i of response.results) {
+        for (let i of response.results) {
             if (commitId in i) {
                 const commit = i[commitId];
                 if (commit.length > 0) {
@@ -52,16 +52,12 @@ export class PullRequestHelper {
             return null;
 
         const workItems: WorkItem[] = [];
-        for(let i of response.value) {
+        for (let i of response.value) {
             const workItem = await Api.instance.get<WorkItem>(`${i.url}?$expand=relations`);
             if (!workItem)
                 continue;
-            
+
             switch (workItem.fields['System.WorkItemType']) {
-                case 'User Story':
-                case 'Bug':
-                    workItems.push(workItem);
-                    break;
                 case 'Task':
                     const parentRelation = workItem.relations.find(r => r.rel === 'System.LinkTypes.Hierarchy-Reverse');
                     if (!parentRelation)
@@ -72,6 +68,7 @@ export class PullRequestHelper {
                         workItems.push(parent);
                     break;
                 default:
+                    workItems.push(workItem);
                     continue;
             }
         }
